@@ -21,12 +21,18 @@ public interface McDonaldsInterface extends Remote {
 	public void produceMcChicken() throws RemoteException;
 	public void consumeMcChicken() throws RemoteException;
 	public int getQtdMcChicken() throws RemoteException;
+	int getQtdMcChickenConsumers() throws RemoteException;
+	int getQtdMcChickenProducers() throws RemoteException;
 	
 	public void produceMcFish() throws RemoteException;
 	public void consumeMcFish() throws RemoteException;
 	public int getQtdMcFish() throws RemoteException;
+	int getQtdMcFishConsumers() throws RemoteException;
+	int getQtdMcFishProducers() throws RemoteException;
 	
 	public void produceBigMac() throws RemoteException;
 	public void consumeBigMac() throws RemoteException;
-	public int getQtdMcBigMac() throws RemoteException;
+	public int getQtdBigMac() throws RemoteException;
+	int getQtdBigMacConsumers() throws RemoteException;
+	int getQtdBigMacProducers() throws RemoteException;
 }

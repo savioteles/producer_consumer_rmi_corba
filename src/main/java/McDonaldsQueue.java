@@ -176,4 +176,12 @@ public class McDonaldsQueue<T> {
 	private boolean hasWakupConsumer() {
 		return size() == 1 || countConsumer > 1;
 	}
+
+	public int getCountConsumer() {
+		return countConsumer;
+	}
+
+	public int getCountProducer() {
+		return countProducer;
+	}
 }

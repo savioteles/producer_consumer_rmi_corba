@@ -24,7 +24,10 @@ public class Server {
 		System.out.println("Servidor ativo");
 		
 		while(true){
-			System.out.println(engine.getQtdMcBigMac() +"\t" +engine.getQtdMcChicken() +"\t" +engine.getQtdMcFish());
+			System.out.println(engine.getQtdBigMac() +":" +engine.getQtdBigMacProducers() +":" +engine.getQtdBigMacConsumers() 
+					+"\t" +engine.getQtdMcChicken() +":" +engine.getQtdMcChickenProducers() +":" +engine.getQtdMcChickenConsumers() 
+					+"\t" +engine.getQtdMcFish() +":" +engine.getQtdMcFishProducers() +":" +engine.getQtdMcFishConsumers());
+			System.out.println();
 			Thread.sleep(1000);
 		}
 	}

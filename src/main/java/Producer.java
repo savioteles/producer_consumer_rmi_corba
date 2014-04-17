@@ -9,8 +9,9 @@ import java.util.concurrent.TimeUnit;
 import main.java.McDonaldsInterface.Option;
 
 public class Producer extends Thread{
-	private int maxCore = 6;
-	private int core = 4;
+	private int maxCore = 7;
+	private int core = 7;
+	private LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
 
 	public Producer() {
 	}
@@ -25,12 +26,13 @@ public class Producer extends Thread{
 			String name = McDonaldsInterface.MC_DONALDS;
 			Registry registry = LocateRegistry.getRegistry();
 			McDonaldsInterface mc = (McDonaldsInterface) registry.lookup(name);
-
+			ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore,
+					10, TimeUnit.SECONDS,
+					workQueue);
+			
 			while (true) {
-				ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore,
-						10, TimeUnit.SECONDS,
-						new LinkedBlockingQueue<Runnable>());
-				pool.execute(new ProducerThread(mc, Option.getRandom()));
+				Option op = Option.getRandom();
+				pool.execute(new ProducerThread(mc, op));
 				Thread.sleep((long) (Math.random() * 100));
 			}
 		} catch (Exception e) {
@@ -67,5 +69,9 @@ public class Producer extends Thread{
 			}
 		}
 
+	}
+	
+	public int getProdSize(){
+		return workQueue.size();
 	}
 }
