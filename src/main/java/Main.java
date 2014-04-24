@@ -3,6 +3,7 @@ package main.java;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,11 @@ import javax.swing.SwingUtilities;
 
 public class Main extends JFrame {
 
-	private static final String FIG_WHITE_JPG = "fig/white.jpg";
+	private static final URL FIG_WHITE_JPG = Main.class.getResource("white.jpg");
+	private static final URL MCFISH_FIG = Main.class.getResource("mcfish.jpg");
+	private static final URL MCCHICKEN_FIG = Main.class.getResource("mcchicken.jpg");
+	private static final URL BIGMAC_FIG = Main.class.getResource("bigmac.jpg");
+	
 	private static final String MCFISH = "mcfish";
 	private static final String MCCHICKEN = "mcchicken";
 	private static final String BIGMAC = "bigmac";
@@ -129,43 +134,43 @@ public class Main extends JFrame {
 
         buttonsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label_chicken5.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken5.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
-        label_chicken2.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken2.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
-        label_chicken3.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken3.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
-        label_chicken4.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken4.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
-        label_chicken6.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken6.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
 
-        label_chicken7.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken7.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
 
-        label_chicken8.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken8.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, -1, -1));
 
-        label_chicken9.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken9.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, -1, -1));
 
-        label_chicken10.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken10.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken10, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, -1));
 
-        label_chicken1.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_chicken1.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
@@ -179,83 +184,83 @@ public class Main extends JFrame {
         });
         buttonsPanel.add(initButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 100, -1));
 
-        label_fish2.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish2.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
-        label_fish10.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish10.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish10, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
-        label_bigmac10.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac10.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac10, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, -1, -1));
 
-        label_fish3.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish3.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
-        label_fish4.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish4.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
-        label_fish5.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish5.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
 
-        label_fish6.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish6.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, -1));
 
-        label_fish7.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish7.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, -1));
 
-        label_fish8.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish8.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
 
-        label_fish9.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish9.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, -1, -1));
 
-        label_fish1.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_fish1.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_fish1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
-        label_bigmac1.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac1.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
 
-        label_bigmac2.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac2.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
 
-        label_bigmac3.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac3.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
 
-        label_bigmac4.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac4.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
 
-        label_bigmac5.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac5.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, -1));
 
-        label_bigmac6.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac6.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, -1, -1));
 
-        label_bigmac7.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac7.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, -1, -1));
 
-        label_bigmac8.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac8.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, -1, -1));
 
-        label_bigmac9.setIcon(new javax.swing.ImageIcon("/home/savio/producer_consumer_rmi/fig/white.jpg")); // NOI18N
+        label_bigmac9.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_bigmac9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_bigmac9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
 
@@ -404,7 +409,7 @@ public class Main extends JFrame {
     }
     
     private class ThreadEvent extends Thread{
-    	McDonaldsInterface engine;
+		McDonaldsInterface engine;
     	
     	public ThreadEvent(McDonaldsInterface engine) {
 			this.engine = engine;
@@ -417,21 +422,21 @@ public class Main extends JFrame {
 				int qtdBigMac = engine.getQtdBigMac();
 				int qtdBigMacProducers = engine.getQtdBigMacProducers();
 				int qtdBigMacConsumers = engine.getQtdBigMacConsumers();
-				printMcDonaldsIcon(BIGMAC, qtdBigMac, "fig/big_mac.jpg");
+				printMcDonaldsIcon(BIGMAC, qtdBigMac, BIGMAC_FIG);
 				jTextField_sand_chapa_bigmac.setText("" +qtdBigMacProducers);
 				jTextField_waiting_bigmac.setText(""+qtdBigMacConsumers);
 				
 				int qtdMcChicken = engine.getQtdMcChicken();
 				int qtdMcChickenProducers = engine.getQtdMcChickenProducers();
 				int qtdMcChickenConsumers = engine.getQtdMcChickenConsumers();
-				printMcDonaldsIcon(MCCHICKEN, qtdMcChicken, "fig/mcchicken.jpg");
+				printMcDonaldsIcon(MCCHICKEN, qtdMcChicken, MCCHICKEN_FIG);
 				jTextField_sand_chapa_chicken.setText(""+qtdMcChickenProducers);
 				jTextField_waiting_chicken.setText(""+qtdMcChickenConsumers);
 				
 				int qtdMcFish = engine.getQtdMcFish();
 				int qtdMcFishProducers = engine.getQtdMcFishProducers();
 				int qtdMcFishConsumers = engine.getQtdMcFishConsumers();
-				printMcDonaldsIcon(MCFISH, qtdMcFish, "fig/mc_fish.jpg");
+				printMcDonaldsIcon(MCFISH, qtdMcFish, MCFISH_FIG);
 				jTextField_sand_chapa_fish.setText(""+qtdMcFishProducers);
 				jTextField_waiting_fish.setText(""+qtdMcFishConsumers);
 				
@@ -443,7 +448,7 @@ public class Main extends JFrame {
     	}
     }
 
-    private void printMcDonaldsIcon(String key, int qtd, String iconPath){
+    private void printMcDonaldsIcon(String key, int qtd, URL url){
     	List<JLabel> list = labelsMap.get(key);
     	
     	for(JLabel label: list){
@@ -452,7 +457,7 @@ public class Main extends JFrame {
     	
     	for(int i = 0; i < qtd; i++){
     		JLabel label = list.get(i);
-    		label.setIcon(new javax.swing.ImageIcon(iconPath));
+    		label.setIcon(new javax.swing.ImageIcon(url));
     	}
     }
     
