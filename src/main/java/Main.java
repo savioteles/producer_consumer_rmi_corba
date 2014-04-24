@@ -1,36 +1,5 @@
 package main.java;
 
-/*
- * Copyright (c) 2010, Oracle.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *  * Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the distribution.
- *  * Neither the name of Oracle nor the names of its
- *    contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED 
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
- */
-
-/* Anagram Game Application */
-
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -43,9 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-/**
- * Main window of the Anagram Game application.
- */
 public class Main extends JFrame {
 
 	private static final String FIG_WHITE_JPG = "fig/white.jpg";
@@ -54,11 +20,6 @@ public class Main extends JFrame {
 	private static final String BIGMAC = "bigmac";
 	private static final long serialVersionUID = 1L;
 	public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             javax.swing.UIManager.LookAndFeelInfo[] installedLookAndFeels=javax.swing.UIManager.getInstalledLookAndFeels();
             for (int idx=0; idx<installedLookAndFeels.length; idx++)
@@ -75,9 +36,7 @@ public class Main extends JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
@@ -85,17 +44,16 @@ public class Main extends JFrame {
         });
     }
 
-    /** Creates new form Anagrams */
     public Main() {
         
         initComponents();
         getRootPane().setDefaultButton(initButton);
         pack();
-        // Center in the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = getSize();
         setLocation(new Point((screenSize.width - frameSize.width) / 2,
                               (screenSize.height - frameSize.width) / 2));
+        setResizable(false);
     }
     
     /** This method is called from within the constructor to
@@ -434,6 +392,7 @@ public class Main extends JFrame {
     
     private void initActionPerformed(java.awt.event.ActionEvent evt) {                                            
         try {
+        	initButton.setEnabled(false);
         	initLabels();
         	
 			McDonaldsInterface engine = Server.runServer();
@@ -501,7 +460,6 @@ public class Main extends JFrame {
         System.exit(0);
     }                         
 
-    // Variables declaration - do not modify                     
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
@@ -553,6 +511,4 @@ public class Main extends JFrame {
     private javax.swing.JLabel label_fish9;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JPanel mainPanel;
-    // End of variables declaration                   
-
 }
