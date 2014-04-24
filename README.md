@@ -13,6 +13,6 @@ Na aplicação existe um menu "File" no canto superior esquerdo com a opção "E
 
 # Inicializando a aplicação
 
-Para iniciar a aplicação basta realizar o download do jar "producer_consumer.jar" no link https://github.com/savioteles/producer_consumer_rmi/blob/master/producer_consumer.jar e executar o seguinte comando:
+Para iniciar a aplicação basta realizar o download do jar "producer_consumer.jar" no link https://github.com/savioteles/producer_consumer_rmi/blob/master/producer_consumer.jar?raw=true e executar o seguinte comando:
 
 java -jar producer_consumer.jar 
