@@ -11,10 +11,10 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import main.java.rmi.McDonaldsRmiInterface;
-import main.java.rmi.Server;
 
 public class Main extends JFrame {
 
@@ -27,7 +27,19 @@ public class Main extends JFrame {
 	private static final String MCCHICKEN = "mcchicken";
 	private static final String BIGMAC = "bigmac";
 	private static final long serialVersionUID = 1L;
-	public static void main(String[] args) throws Exception {
+	
+	public static void main(String[] args) {
+		String[] choices = { "corba", "rmi" };
+		final int choice = JOptionPane.showOptionDialog(null // Center in window.
+				, "Qual mecanismo para comunicação RPC deseja utilizar?" // Message
+				, "Escolha da camada de comunicação" // Title in titlebar
+				, JOptionPane.YES_NO_OPTION // Option type
+				, JOptionPane.PLAIN_MESSAGE // messageType
+				, null // Icon (none)
+				, choices // Button text as above.
+				, "rmi" // Default button's label
+		);
+		
         try {
             javax.swing.UIManager.LookAndFeelInfo[] installedLookAndFeels=javax.swing.UIManager.getInstalledLookAndFeels();
             for (int idx=0; idx<installedLookAndFeels.length; idx++)
@@ -50,7 +62,8 @@ public class Main extends JFrame {
                 new Main().setVisible(true);
 				try {
 					initLabels();
-					McDonaldsRmiInterface engine = Server.runServer();
+					
+					McDonaldsRmiInterface engine = Server.runServer(choice);
 					ThreadEvent t = new ThreadEvent(engine);
 	        		t.start();
 				} catch (Exception e) {
