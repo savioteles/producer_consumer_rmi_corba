@@ -1,0 +1,34 @@
+module McDonaldsCorbaPackage {
+
+	interface McDonaldsCorba {
+		void produceMcChicken();
+
+		void consumeMcChicken();
+
+		long getQtdMcChicken();
+
+		long getQtdMcChickenConsumers();
+
+		long getQtdMcChickenProducers();
+
+		void produceMcFish();
+
+		void consumeMcFish();
+
+		long getQtdMcFish();
+
+		long getQtdMcFishConsumers();
+
+		long getQtdMcFishProducers();
+
+		void produceBigMac();
+
+		void consumeBigMac();
+
+		long getQtdBigMac();
+
+		long getQtdBigMacConsumers();
+
+		long getQtdBigMacProducers();
+	};
+};

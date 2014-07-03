@@ -13,6 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+import main.java.rmi.McDonaldsRmiInterface;
+import main.java.rmi.Server;
+
 public class Main extends JFrame {
 
 	private static final URL FIG_WHITE_JPG = Main.class.getResource("white.jpg");
@@ -400,7 +403,7 @@ public class Main extends JFrame {
         	initButton.setEnabled(false);
         	initLabels();
         	
-			McDonaldsInterface engine = Server.runServer();
+			McDonaldsRmiInterface engine = Server.runServer();
 			ThreadEvent t = new ThreadEvent(engine);
 			t.start();
 		} catch (Exception e) {
@@ -409,9 +412,9 @@ public class Main extends JFrame {
     }
     
     private class ThreadEvent extends Thread{
-		McDonaldsInterface engine;
+		McDonaldsRmiInterface engine;
     	
-    	public ThreadEvent(McDonaldsInterface engine) {
+    	public ThreadEvent(McDonaldsRmiInterface engine) {
 			this.engine = engine;
 		}
 
