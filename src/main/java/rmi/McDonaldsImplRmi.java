@@ -1,12 +1,12 @@
 package main.java.rmi;
 
-import main.java.McDonaldsInterface;
+import main.java.McDonaldsExecutor;
 
 public class McDonaldsImplRmi implements McDonaldsRmiInterface {
 
-	McDonaldsInterface instance;
+	McDonaldsExecutor instance;
 
-	public McDonaldsImplRmi(McDonaldsInterface instance) {
+	public McDonaldsImplRmi(McDonaldsExecutor instance) {
 		this.instance = instance;
 	}
 

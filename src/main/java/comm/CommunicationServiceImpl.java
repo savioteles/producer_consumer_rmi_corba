@@ -1,6 +1,5 @@
 package main.java.comm;
 
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -16,18 +15,28 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	
 	public CommunicationServiceImpl() throws Exception {
 		String name = McDonaldsRmiInterface.MC_DONALDS;
-		Registry registry = LocateRegistry.getRegistry();
-		rmi = (McDonaldsRmiInterface) registry.lookup(name);
+		try {
+			Registry registry = LocateRegistry.getRegistry();
+			rmi = (McDonaldsRmiInterface) registry.lookup(name);
+		} catch (Exception e) {
+			rmi = null;
+		}
 		
-		CorbaNameServices nameServices = new CorbaNameServices("Corba");
-		corba = nameServices.consultaObjeto();
+		try {
+			CorbaNameServices nameServices = new CorbaNameServices(name);
+			corba = nameServices.consultaObjeto();
+		} catch (Exception e) {
+			corba = null;
+			if(rmi == null && corba == null)
+				System.err.println("Inicie o servidor");
+		}
 	}
 
 	@Override
 	public void produceMcChicken() {
 		try {
 			rmi.produceMcChicken();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			corba.produceMcChicken();
 		}
 	}
@@ -36,7 +45,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public void consumeMcChicken() {
 		try {
 			rmi.consumeMcChicken();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			corba.consumeMcChicken();
 		}
 	}
@@ -45,7 +54,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdMcChicken() {
 		try {
 			return rmi.getQtdMcChicken();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdMcChicken();
 		}
 	}
@@ -54,7 +63,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdMcChickenConsumers() {
 		try {
 			return rmi.getQtdMcChickenConsumers();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdMcChickenConsumers();
 		}
 	}
@@ -63,7 +72,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdMcChickenProducers() {
 		try {
 			return rmi.getQtdMcChickenProducers();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdMcChickenProducers();
 		}
 	}
@@ -72,7 +81,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public void produceMcFish() {
 		try {
 			rmi.produceMcFish();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			corba.produceMcFish();
 		}
 	}
@@ -81,7 +90,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public void consumeMcFish() {
 		try {
 			rmi.consumeMcFish();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			corba.consumeMcFish();
 		}
 	}
@@ -90,7 +99,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdMcFish() {
 		try {
 			return rmi.getQtdMcFish();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdMcFish();
 		}
 	}
@@ -99,7 +108,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdMcFishConsumers() {
 		try {
 			return rmi.getQtdMcFishConsumers();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdMcFishConsumers();
 		}
 	}
@@ -108,7 +117,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdMcFishProducers() {
 		try {
 			return rmi.getQtdMcFishProducers();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdMcFishProducers();
 		}
 	}
@@ -117,7 +126,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public void produceBigMac() {
 		try {
 			rmi.produceBigMac();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			corba.produceBigMac();
 		}
 		
@@ -127,7 +136,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public void consumeBigMac() {
 		try {
 			rmi.consumeBigMac();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			corba.consumeBigMac();
 		}
 		
@@ -137,7 +146,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdBigMac() {
 		try {
 			return rmi.getQtdBigMac();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdBigMac();
 		}
 	}
@@ -146,7 +155,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdBigMacConsumers() {
 		try {
 			return rmi.getQtdBigMacConsumers();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdBigMacConsumers();
 		}
 	}
@@ -155,7 +164,7 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 	public int getQtdBigMacProducers() {
 		try {
 			return rmi.getQtdBigMacProducers();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			return corba.getQtdBigMacProducers();
 		}
 	}

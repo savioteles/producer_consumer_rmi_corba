@@ -11,7 +11,7 @@ public class Producer extends Thread {
 	private static int core = 7;
 	private static LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
 
-	public static void main(String args) {
+	public static void main(String[] args) {
 		try {
 			McDonaldsInterface mc = CommunicationController.getReference();
 			ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore, 10,

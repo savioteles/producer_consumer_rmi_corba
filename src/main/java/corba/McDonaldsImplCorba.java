@@ -1,15 +1,15 @@
 package main.java.corba;
 
+import main.java.McDonaldsExecutor;
 import _McDonaldsCorbaPackage._McDonaldsCorbaImplBase;
-import main.java.McDonaldsInterface;
 
 public class McDonaldsImplCorba extends _McDonaldsCorbaImplBase {
 
 	private static final long serialVersionUID = 1L;
-	McDonaldsInterface instance;
+	McDonaldsExecutor instance = new McDonaldsExecutor();
 
-	public McDonaldsImplCorba(McDonaldsInterface instance) {
-		this.instance = instance;
+	public McDonaldsImplCorba(McDonaldsExecutor executor) {
+		this.instance = executor;
 	}
 
 	public void produceMcChicken() {
