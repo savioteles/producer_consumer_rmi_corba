@@ -11,7 +11,10 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
+import main.java.rmi.McDonaldsRmiInterface;
 
 public class Main extends JFrame {
 
@@ -24,7 +27,19 @@ public class Main extends JFrame {
 	private static final String MCCHICKEN = "mcchicken";
 	private static final String BIGMAC = "bigmac";
 	private static final long serialVersionUID = 1L;
+	
 	public static void main(String[] args) {
+		String[] choices = { "corba", "rmi" };
+		final int choice = JOptionPane.showOptionDialog(null // Center in window.
+				, "Qual mecanismo para comunicação RPC deseja utilizar?" // Message
+				, "Escolha da camada de comunicação" // Title in titlebar
+				, JOptionPane.YES_NO_OPTION // Option type
+				, JOptionPane.PLAIN_MESSAGE // messageType
+				, null // Icon (none)
+				, choices // Button text as above.
+				, "rmi" // Default button's label
+		);
+		
         try {
             javax.swing.UIManager.LookAndFeelInfo[] installedLookAndFeels=javax.swing.UIManager.getInstalledLookAndFeels();
             for (int idx=0; idx<installedLookAndFeels.length; idx++)
@@ -45,14 +60,25 @@ public class Main extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+				try {
+					initLabels();
+					
+					McDonaldsRmiInterface engine = Server.runServer(choice);
+					ThreadEvent t = new ThreadEvent(engine);
+	        		t.start();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+        		
             }
         });
+        
+       
     }
 
     public Main() {
         
         initComponents();
-        getRootPane().setDefaultButton(initButton);
         pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = getSize();
@@ -81,7 +107,6 @@ public class Main extends JFrame {
         label_chicken9 = new javax.swing.JLabel();
         label_chicken10 = new javax.swing.JLabel();
         label_chicken1 = new javax.swing.JLabel();
-        initButton = new javax.swing.JButton();
         label_fish2 = new javax.swing.JLabel();
         label_fish10 = new javax.swing.JLabel();
         label_bigmac10 = new javax.swing.JLabel();
@@ -173,16 +198,6 @@ public class Main extends JFrame {
         label_chicken1.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_chicken1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         buttonsPanel.add(label_chicken1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
-
-        initButton.setMnemonic('G');
-        initButton.setText("Iniciar");
-        initButton.setToolTipText("Guess the scrambled word.");
-        initButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                initActionPerformed(evt);
-            }
-        });
-        buttonsPanel.add(initButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 100, -1));
 
         label_fish2.setIcon(new javax.swing.ImageIcon(FIG_WHITE_JPG)); // NOI18N
         label_fish2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -350,9 +365,9 @@ public class Main extends JFrame {
         System.exit(0);
     }                                            
 
-    Map<String, List<JLabel>> labelsMap = new HashMap<String, List<JLabel>>();
+    static Map<String, List<JLabel>> labelsMap = new HashMap<String, List<JLabel>>();
     
-    private void initLabels(){
+    private static void initLabels(){
     	List<JLabel> bigmacs = new ArrayList<JLabel>();
     	bigmacs.add(label_bigmac1);
     	bigmacs.add(label_bigmac2);
@@ -395,23 +410,10 @@ public class Main extends JFrame {
     	
     }
     
-    private void initActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        try {
-        	initButton.setEnabled(false);
-        	initLabels();
-        	
-			McDonaldsInterface engine = Server.runServer();
-			ThreadEvent t = new ThreadEvent(engine);
-			t.start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}        
-    }
-    
-    private class ThreadEvent extends Thread{
-		McDonaldsInterface engine;
+    private static class ThreadEvent extends Thread{
+		McDonaldsRmiInterface engine;
     	
-    	public ThreadEvent(McDonaldsInterface engine) {
+    	public ThreadEvent(McDonaldsRmiInterface engine) {
 			this.engine = engine;
 		}
 
@@ -448,7 +450,7 @@ public class Main extends JFrame {
     	}
     }
 
-    private void printMcDonaldsIcon(String key, int qtd, URL url){
+    private static void printMcDonaldsIcon(String key, int qtd, URL url){
     	List<JLabel> list = labelsMap.get(key);
     	
     	for(JLabel label: list){
@@ -468,7 +470,6 @@ public class Main extends JFrame {
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JButton initButton;
     private javax.swing.JLabel jLabel_all_Mcfish;
     private javax.swing.JLabel jLabel_all_bigmac;
     private javax.swing.JLabel jLabel_all_mcchicken;
@@ -478,42 +479,42 @@ public class Main extends JFrame {
     private javax.swing.JLabel jLabel_waiting_bigmac;
     private javax.swing.JLabel jLabel_waiting_chicken;
     private javax.swing.JLabel jLabel_waiting_fish;
-    private javax.swing.JTextField jTextField_sand_chapa_bigmac;
-    private javax.swing.JTextField jTextField_sand_chapa_chicken;
-    private javax.swing.JTextField jTextField_sand_chapa_fish;
-    private javax.swing.JTextField jTextField_waiting_bigmac;
-    private javax.swing.JTextField jTextField_waiting_chicken;
-    private javax.swing.JTextField jTextField_waiting_fish;
-    private javax.swing.JLabel label_bigmac1;
-    private javax.swing.JLabel label_bigmac10;
-    private javax.swing.JLabel label_bigmac2;
-    private javax.swing.JLabel label_bigmac3;
-    private javax.swing.JLabel label_bigmac4;
-    private javax.swing.JLabel label_bigmac5;
-    private javax.swing.JLabel label_bigmac6;
-    private javax.swing.JLabel label_bigmac7;
-    private javax.swing.JLabel label_bigmac8;
-    private javax.swing.JLabel label_bigmac9;
-    private javax.swing.JLabel label_chicken1;
-    private javax.swing.JLabel label_chicken10;
-    private javax.swing.JLabel label_chicken2;
-    private javax.swing.JLabel label_chicken3;
-    private javax.swing.JLabel label_chicken4;
-    private javax.swing.JLabel label_chicken5;
-    private javax.swing.JLabel label_chicken6;
-    private javax.swing.JLabel label_chicken7;
-    private javax.swing.JLabel label_chicken8;
-    private javax.swing.JLabel label_chicken9;
-    private javax.swing.JLabel label_fish1;
-    private javax.swing.JLabel label_fish10;
-    private javax.swing.JLabel label_fish2;
-    private javax.swing.JLabel label_fish3;
-    private javax.swing.JLabel label_fish4;
-    private javax.swing.JLabel label_fish5;
-    private javax.swing.JLabel label_fish6;
-    private javax.swing.JLabel label_fish7;
-    private javax.swing.JLabel label_fish8;
-    private javax.swing.JLabel label_fish9;
+    private static javax.swing.JTextField jTextField_sand_chapa_bigmac;
+    private static javax.swing.JTextField jTextField_sand_chapa_chicken;
+    private static javax.swing.JTextField jTextField_sand_chapa_fish;
+    private static javax.swing.JTextField jTextField_waiting_bigmac;
+    private static javax.swing.JTextField jTextField_waiting_chicken;
+    private static javax.swing.JTextField jTextField_waiting_fish;
+    private static javax.swing.JLabel label_bigmac1;
+    private static javax.swing.JLabel label_bigmac10;
+    private static javax.swing.JLabel label_bigmac2;
+    private static javax.swing.JLabel label_bigmac3;
+    private static javax.swing.JLabel label_bigmac4;
+    private static javax.swing.JLabel label_bigmac5;
+    private static javax.swing.JLabel label_bigmac6;
+    private static javax.swing.JLabel label_bigmac7;
+    private static javax.swing.JLabel label_bigmac8;
+    private static javax.swing.JLabel label_bigmac9;
+    private static javax.swing.JLabel label_chicken1;
+    private static javax.swing.JLabel label_chicken10;
+    private static javax.swing.JLabel label_chicken2;
+    private static javax.swing.JLabel label_chicken3;
+    private static javax.swing.JLabel label_chicken4;
+    private static javax.swing.JLabel label_chicken5;
+    private static javax.swing.JLabel label_chicken6;
+    private static javax.swing.JLabel label_chicken7;
+    private static javax.swing.JLabel label_chicken8;
+    private static javax.swing.JLabel label_chicken9;
+    private static javax.swing.JLabel label_fish1;
+    private static javax.swing.JLabel label_fish10;
+    private static javax.swing.JLabel label_fish2;
+    private static javax.swing.JLabel label_fish3;
+    private static javax.swing.JLabel label_fish4;
+    private static javax.swing.JLabel label_fish5;
+    private static javax.swing.JLabel label_fish6;
+    private static javax.swing.JLabel label_fish7;
+    private static javax.swing.JLabel label_fish8;
+    private static javax.swing.JLabel label_fish9;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JPanel mainPanel;
 }

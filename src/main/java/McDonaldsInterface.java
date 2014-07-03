@@ -1,16 +1,14 @@
 package main.java;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public interface McDonaldsInterface extends Remote {
+public interface McDonaldsInterface {
 
 	static final String MC_DONALDS = "McDonalds";
 	Random r = new SecureRandom();
 	
-	enum Option{
+	public enum Option{
 		MC_CHICKEN, MC_FISH, BIG_MAC;
 		
 		 public static Option getRandom() {
@@ -18,21 +16,21 @@ public interface McDonaldsInterface extends Remote {
 	    }
 	}
 	
-	public void produceMcChicken() throws RemoteException;
-	public void consumeMcChicken() throws RemoteException;
-	public int getQtdMcChicken() throws RemoteException;
-	int getQtdMcChickenConsumers() throws RemoteException;
-	int getQtdMcChickenProducers() throws RemoteException;
+	public void produceMcChicken();
+	public void consumeMcChicken();
+	public int getQtdMcChicken();
+	int getQtdMcChickenConsumers();
+	int getQtdMcChickenProducers();
 	
-	public void produceMcFish() throws RemoteException;
-	public void consumeMcFish() throws RemoteException;
-	public int getQtdMcFish() throws RemoteException;
-	int getQtdMcFishConsumers() throws RemoteException;
-	int getQtdMcFishProducers() throws RemoteException;
+	public void produceMcFish();
+	public void consumeMcFish();
+	public int getQtdMcFish();
+	int getQtdMcFishConsumers();
+	int getQtdMcFishProducers();
 	
-	public void produceBigMac() throws RemoteException;
-	public void consumeBigMac() throws RemoteException;
-	public int getQtdBigMac() throws RemoteException;
-	int getQtdBigMacConsumers() throws RemoteException;
-	int getQtdBigMacProducers() throws RemoteException;
+	public void produceBigMac();
+	public void consumeBigMac();
+	public int getQtdBigMac();
+	int getQtdBigMacConsumers();
+	int getQtdBigMacProducers();
 }

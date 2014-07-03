@@ -1,31 +1,20 @@
 package main.java;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import main.java.McDonaldsInterface.Option;
+import main.java.comm.CommunicationController;
+import main.java.rmi.McDonaldsRmiInterface.Option;
 
 public class Consumer extends Thread{
-	private int maxCore = 7;
-	private int core = 7;
-	private LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
+	private static int maxCore = 7;
+	private static int core = 7;
+	private static LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
 
-	public Consumer() {
-	}
-
-	public Consumer(int maxCore, int core) {
-		this.maxCore = maxCore;
-		this.core = core;
-	}
-
-	public void run() {
+	public static void main(String[] args) {
 		try {
-			String name = McDonaldsInterface.MC_DONALDS;
-			Registry registry = LocateRegistry.getRegistry();
-			McDonaldsInterface mc = (McDonaldsInterface) registry.lookup(name);
+			McDonaldsInterface mc = CommunicationController.getReference();
 			ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore,
 					10, TimeUnit.SECONDS,
 					workQueue);

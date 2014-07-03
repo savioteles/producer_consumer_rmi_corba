@@ -4,14 +4,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class McDonalds implements McDonaldsInterface {
+import main.java.McDonaldsQueue;
+import main.java.rmi.McDonaldsRmiInterface;
+
+public class McDonaldsExecutor implements McDonaldsRmiInterface {
 
 	private static McDonaldsQueue<Character> mcChickenQueue;
 	private static McDonaldsQueue<Character> mcFishQueue;
 	private static McDonaldsQueue<Character> bigMacQueue;
 	ThreadPoolExecutor pool;
 
-	public McDonalds() {
+	public McDonaldsExecutor() {
 		mcChickenQueue = new McDonaldsQueue<Character>();
 		mcFishQueue = new McDonaldsQueue<Character>();
 		bigMacQueue = new McDonaldsQueue<Character>();

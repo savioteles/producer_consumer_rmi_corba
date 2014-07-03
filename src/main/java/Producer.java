@@ -1,37 +1,24 @@
 package main.java;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import main.java.McDonaldsInterface.Option;
+import main.java.comm.CommunicationController;
 
-public class Producer extends Thread{
-	private int maxCore = 7;
-	private int core = 7;
-	private LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
+public class Producer extends Thread {
+	private static int maxCore = 7;
+	private static int core = 7;
+	private static LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
 
-	public Producer() {
-	}
-
-	public Producer(int maxCore, int core) {
-		this.maxCore = maxCore;
-		this.core = core;
-	}
-
-	public void run() {
+	public static void main(String[] args) {
 		try {
-			String name = McDonaldsInterface.MC_DONALDS;
-			Registry registry = LocateRegistry.getRegistry();
-			McDonaldsInterface mc = (McDonaldsInterface) registry.lookup(name);
-			ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore,
-					10, TimeUnit.SECONDS,
-					workQueue);
-			
+			McDonaldsInterface mc = CommunicationController.getReference();
+			ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore, 10,
+					TimeUnit.SECONDS, workQueue);
+
 			while (true) {
-				Option op = Option.getRandom();
+				McDonaldsInterface.Option op = McDonaldsInterface.Option.getRandom();
 				pool.execute(new ProducerThread(mc, op));
 				Thread.sleep((long) (Math.random() * 100));
 			}
@@ -42,9 +29,9 @@ public class Producer extends Thread{
 
 	private static class ProducerThread implements Runnable {
 		McDonaldsInterface mc;
-		Option op;
+		McDonaldsInterface.Option op;
 
-		public ProducerThread(McDonaldsInterface mc, Option op) {
+		public ProducerThread(McDonaldsInterface mc, McDonaldsInterface.Option op) {
 			this.mc = mc;
 			this.op = op;
 		}
@@ -70,8 +57,8 @@ public class Producer extends Thread{
 		}
 
 	}
-	
-	public int getProdSize(){
+
+	public int getProdSize() {
 		return workQueue.size();
 	}
 }
