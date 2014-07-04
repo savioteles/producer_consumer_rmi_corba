@@ -40,9 +40,14 @@ public class Server {
 	}
 	
 	private static void initCorba(String name, McDonaldsExecutor executor) throws Exception{
-		McDonaldsImplCorba corba = new McDonaldsImplCorba(executor);
-		CorbaNameServices nameServices = new CorbaNameServices(name);
-		nameServices.insereObjeto(corba);
+		try {
+			McDonaldsImplCorba corba = new McDonaldsImplCorba(executor);
+			CorbaNameServices nameServices = new CorbaNameServices(name);
+			nameServices.insereObjeto(corba);
+		} catch (Exception e){
+			System.out.println("O tnamserv do CORBA não foi incializado. Digite o seguinte comando no terminal: tnameserv -ORBInitialPort 1070 &");
+			System.exit(0);
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {

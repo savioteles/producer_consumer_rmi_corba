@@ -7,13 +7,15 @@ package main.java.corba;
 // Sergio Teixeira de Carvalho 
 //
 
-import org.omg.CosNaming.*;
-import org.omg.CORBA.*;
+import java.util.Properties;
+
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContext;
+import org.omg.CosNaming.NamingContextHelper;
 
 import _McDonaldsCorbaPackage.McDonaldsCorba;
 import _McDonaldsCorbaPackage.McDonaldsCorbaHelper;
-
-import java.util.Properties;
 
 public class CorbaNameServices {
 
@@ -49,8 +51,7 @@ public class CorbaNameServices {
          ncRef.rebind (path, aServant);
        }
        catch (Exception e) {
-          System.out.println ("Erro: " + idObjeto + " " + e);
-          e.printStackTrace(System.out);
+          throw new RuntimeException(e.getMessage(), e);
        }
    }
 
@@ -58,24 +59,18 @@ public class CorbaNameServices {
 // Metodo consultaObjeto(). Este metodo e' invocado pelo cliente ou pelo 
 //  servidor com o objetivo de encontrar um objeto no servico de nomes CORBA
 
-   public McDonaldsCorba consultaObjeto() {
-	   McDonaldsCorba refObjeto = null;
-      try {
-         Properties props = new Properties();
-         props.setProperty("org.omg.CORBA.ORBInitialHost", "localhost");
-         props.setProperty("org.omg.CORBA.ORBInitialPort", "1070");
-         ORB orb = ORB.init(args, props);
-         org.omg.CORBA.Object objRef = 
-                orb.resolve_initial_references("NameService");
-         NamingContext ncRef = NamingContextHelper.narrow(objRef);
-         NameComponent nc1 = new NameComponent (idObjeto, "");
-         NameComponent path[] = {nc1};
-         refObjeto = McDonaldsCorbaHelper.narrow (ncRef.resolve(path));
-       }
-     catch (Exception e) {
-          System.out.println ("Erro: "  + idObjeto + " " + e);
-          e.printStackTrace(System.out);
-     }
-     return (refObjeto);
-   }
+	public McDonaldsCorba consultaObjeto() throws Exception {
+		McDonaldsCorba refObjeto = null;
+		Properties props = new Properties();
+		props.setProperty("org.omg.CORBA.ORBInitialHost", "localhost");
+		props.setProperty("org.omg.CORBA.ORBInitialPort", "1070");
+		ORB orb = ORB.init(args, props);
+		org.omg.CORBA.Object objRef = orb
+				.resolve_initial_references("NameService");
+		NamingContext ncRef = NamingContextHelper.narrow(objRef);
+		NameComponent nc1 = new NameComponent(idObjeto, "");
+		NameComponent path[] = { nc1 };
+		refObjeto = McDonaldsCorbaHelper.narrow(ncRef.resolve(path));
+		return (refObjeto);
+	}
 }
