@@ -13,6 +13,7 @@ public class Producer extends Thread {
 
 	public static void main(String[] args) {
 		try {
+			System.out.println("Iniciando o produtor de sanduíches com 7 chapeiros produzindo sanduíches em tempos de 1 a 100ms...");
 			McDonaldsInterface mc = CommunicationController.getReference();
 			ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore, 10,
 					TimeUnit.SECONDS, workQueue);

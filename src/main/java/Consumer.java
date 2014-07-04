@@ -14,6 +14,7 @@ public class Consumer extends Thread{
 
 	public static void main(String[] args) {
 		try {
+			System.out.println("Iniciando o consumidor do McDonalds com 7 clientes chegando em tempos de 1 a 100ms...");
 			McDonaldsInterface mc = CommunicationController.getReference();
 			ThreadPoolExecutor pool = new ThreadPoolExecutor(core, maxCore,
 					10, TimeUnit.SECONDS,

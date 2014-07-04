@@ -12,23 +12,30 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 
 	McDonaldsRmiInterface rmi;
 	McDonaldsCorba corba;
-	
+
 	public CommunicationServiceImpl() throws Exception {
 		String name = McDonaldsRmiInterface.MC_DONALDS;
 		try {
 			Registry registry = LocateRegistry.getRegistry();
 			rmi = (McDonaldsRmiInterface) registry.lookup(name);
+			System.out.println("Utilizando o RMI para comunicação com o servidor.");
 		} catch (Exception e) {
 			rmi = null;
 		}
-		
+
 		try {
-			CorbaNameServices nameServices = new CorbaNameServices(name);
-			corba = nameServices.consultaObjeto();
+			if (rmi == null) {
+				CorbaNameServices nameServices = new CorbaNameServices(name);
+				corba = nameServices.consultaObjeto();
+				System.out.println("Utilizando o CORBA para comunicação com o servidor.");
+			}
 		} catch (Exception e) {
 			corba = null;
-			if(rmi == null && corba == null)
-				System.err.println("Inicie o servidor");
+			if (rmi == null && corba == null) {
+				System.err
+						.println("\nOcorreu um erro ao iniciar a aplicação! Inicie o servidor...");
+				System.exit(0);
+			}
 		}
 	}
 
@@ -37,7 +44,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			rmi.produceMcChicken();
 		} catch (Exception e) {
-			corba.produceMcChicken();
+			try {
+				corba.produceMcChicken();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+			}
+
 		}
 	}
 
@@ -46,7 +60,13 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			rmi.consumeMcChicken();
 		} catch (Exception e) {
-			corba.consumeMcChicken();
+			try {
+				corba.consumeMcChicken();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+			}
 		}
 	}
 
@@ -55,7 +75,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdMcChicken();
 		} catch (Exception e) {
-			return corba.getQtdMcChicken();
+			try {
+				return corba.getQtdMcChicken();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -64,7 +91,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdMcChickenConsumers();
 		} catch (Exception e) {
-			return corba.getQtdMcChickenConsumers();
+			try {
+				return corba.getQtdMcChickenConsumers();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -73,7 +107,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdMcChickenProducers();
 		} catch (Exception e) {
-			return corba.getQtdMcChickenProducers();
+			try {
+				return corba.getQtdMcChickenProducers();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -82,7 +123,13 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			rmi.produceMcFish();
 		} catch (Exception e) {
-			corba.produceMcFish();
+			try {
+				corba.produceMcFish();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+			}
 		}
 	}
 
@@ -91,7 +138,13 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			rmi.consumeMcFish();
 		} catch (Exception e) {
-			corba.consumeMcFish();
+			try {
+				corba.consumeMcFish();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+			}
 		}
 	}
 
@@ -100,7 +153,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdMcFish();
 		} catch (Exception e) {
-			return corba.getQtdMcFish();
+			try {
+				return corba.getQtdMcFish();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -109,7 +169,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdMcFishConsumers();
 		} catch (Exception e) {
-			return corba.getQtdMcFishConsumers();
+			try {
+				return corba.getQtdMcFishConsumers();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -118,7 +185,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdMcFishProducers();
 		} catch (Exception e) {
-			return corba.getQtdMcFishProducers();
+			try {
+				return corba.getQtdMcFishProducers();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -127,9 +201,15 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			rmi.produceBigMac();
 		} catch (Exception e) {
-			corba.produceBigMac();
+			try {
+				corba.produceBigMac();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+			}
 		}
-		
+
 	}
 
 	@Override
@@ -137,9 +217,15 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			rmi.consumeBigMac();
 		} catch (Exception e) {
-			corba.consumeBigMac();
+			try {
+				corba.consumeBigMac();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+			}
 		}
-		
+
 	}
 
 	@Override
@@ -147,7 +233,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdBigMac();
 		} catch (Exception e) {
-			return corba.getQtdBigMac();
+			try {
+				return corba.getQtdBigMac();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -156,7 +249,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdBigMacConsumers();
 		} catch (Exception e) {
-			return corba.getQtdBigMacConsumers();
+			try {
+				return corba.getQtdBigMacConsumers();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 
@@ -165,7 +265,14 @@ public class CommunicationServiceImpl implements McDonaldsInterface {
 		try {
 			return rmi.getQtdBigMacProducers();
 		} catch (Exception e) {
-			return corba.getQtdBigMacProducers();
+			try {
+				return corba.getQtdBigMacProducers();
+			} catch (Exception e1) {
+				System.err
+						.println("O Servidor não está respondendo as requisições. A aplicação será encerrada!");
+				System.exit(0);
+				return 0;
+			}
 		}
 	}
 }
